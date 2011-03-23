@@ -13,6 +13,7 @@ set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
+set cursorline
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -180,4 +181,7 @@ function! OpenURL()
   endif
 endfunction
 map <Leader>w :call OpenURL()<CR>
+
+set list
+autocmd BufWritePre * :%s/\s\+$//e
 
