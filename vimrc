@@ -72,14 +72,6 @@ else
 
 endif " has("autocmd")
 
-" if has("folding")
-  " set foldenable
-  " set foldmethod=syntax
-  " set foldlevel=1
-  " set foldnestmax=2
-  " set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
-" endif
-
 " Softtabs, 2 spaces
 set tabstop=2
 set shiftwidth=2
@@ -90,9 +82,6 @@ set laststatus=2
 
 " \ is the leader character
 let mapleader = ","
-
-" Edit the README_FOR_APP (makes :R commands work)
-map <Leader>R :e doc/README_FOR_APP<CR>
 
 " Hide search highlighting
 map <Leader>h :set invhls <CR>
@@ -120,16 +109,15 @@ vmap P p :call setreg('"', getreg('0')) <CR>
 " No Help, please
 nmap <F1> <Esc>
 
-" Press ^F from insert mode to insert the current file name
-imap <C-F> <C-R>=expand("%")<CR>
-
 " Maps autocomplete to tab
 imap <Tab> <C-N>
 
 imap <C-L> <Space>=><Space>
 
 " Display extra whitespace
-" set list listchars=tab:»·,trail:·
+set list
+set listchars=eol:¬,tab:>-,trail:.,extends:>,precedes:<,nbsp:_
+highlight SpecialKey term=standout ctermbg=yellow guibg=yellow
 
 " Local config
 if filereadable(".vimrc.local")
@@ -143,15 +131,12 @@ endif
 
 " Color scheme
 colorscheme vividchalk
-highlight NonText guibg=#060606
+highlight NonText guibg=DarkGrey
 highlight Folded  guibg=#0A0A0A guifg=#9090D0
 
 " Numbers
 set number
 set numberwidth=5
-
-" Snippets are activated by Shift+Tab
-let g:snippetsEmu_key = "<S-Tab>"
 
 " Tab completion options
 " (only complete to the longest unambiguous match, and show a menu)
@@ -163,25 +148,9 @@ set complete=.,t
 set ignorecase
 set smartcase
 
-" Tags
-let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
-set tags=./tags;
-
-let g:fuf_splitPathMatching=1
-
-" Open URL
-command -bar -nargs=1 OpenURL :!open <args>
-function! OpenURL()
-  let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;:]*')
-  echo s:uri
-  if s:uri != ""
-	  exec "!open \"" . s:uri . "\""
-  else
-	  echo "No URI found in line."
-  endif
-endfunction
-map <Leader>w :call OpenURL()<CR>
-
-set list
+" Autoremove whitespace characters
 autocmd BufWritePre * :%s/\s\+$//e
 
+if exists('&macatsui')
+  set nomacatsui
+endif
