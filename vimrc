@@ -44,7 +44,7 @@ if has("autocmd")
   autocmd BufNewFile,BufRead *.txt setfiletype text
 
   " Enable soft-wrapping for text files
-  autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
+  autocmd FileType text,markdown,html,xhtml,eruby setlocal linebreak nolist
 
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
@@ -115,7 +115,7 @@ imap <Tab> <C-N>
 imap <C-L> <Space>=><Space>
 
 " Display extra whitespace
-set list
+" set list
 set listchars=eol:¬,tab:>-,trail:.,extends:>,precedes:<,nbsp:_
 highlight SpecialKey term=standout ctermbg=yellow guibg=yellow
 
@@ -131,7 +131,7 @@ endif
 
 " Color scheme
 colorscheme vividchalk
-highlight NonText guibg=DarkGrey
+" highlight NonText guibg=DarkGrey
 highlight Folded  guibg=#0A0A0A guifg=#9090D0
 
 " Numbers
@@ -154,3 +154,11 @@ autocmd BufWritePre * :%s/\s\+$//e
 if exists('&macatsui')
   set nomacatsui
 endif
+
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+au BufRead,BufNewFile *.ejs set filetype=html
+
+map <C-c> "*y<CR>
+
