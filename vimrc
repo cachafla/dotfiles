@@ -67,11 +67,10 @@ if has("autocmd")
 
   augroup END
 
-else
-
-  set autoindent		" always set autoindenting on
-
 endif " has("autocmd")
+
+
+set autoindent		" always set autoindenting on
 
 " Softtabs, 2 spaces
 set tabstop=2
