@@ -14,6 +14,7 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 set cursorline
+set paste
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -110,7 +111,7 @@ vmap P p :call setreg('"', getreg('0')) <CR>
 nmap <F1> <Esc>
 
 " Maps autocomplete to tab
-imap <Tab> <C-N>
+" imap <Tab> <C-N>
 
 imap <C-L> <Space>=><Space>
 
@@ -161,4 +162,3 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 au BufRead,BufNewFile *.ejs set filetype=html
 
 map <C-c> "*y<CR>
-
